@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: springboot-prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#      base-path:  #默认actuator
+  metrics:
+    tags:
+      application: ${spring.application.name} #http://localhost:8080/actuator/prometheus
