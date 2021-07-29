@@ -41,25 +41,25 @@ public class PrometheusAspect {
 
     }
 
-    @Around("pointcut()")
-    public Object around(ProceedingJoinPoint pjp) throws Exception {
-
-        Object proceed = null;
-
-        Signature signature = pjp.getSignature();
-        MethodSignature methodSignature = (MethodSignature) signature;
-        Method method = methodSignature.getMethod();
-        Timer timer = Metrics.timer("requests_cost_time", "method_name", method.getName());
-
-        proceed = timer.recordCallable(() -> {
-            try {
-                return pjp.proceed();
-            } catch (Throwable throwable) {
-                throw new RuntimeException(throwable);
-            }
-        });
-
-        requests.increment();
-        return proceed;
-    }
+//    @Around("pointcut()")
+//    public Object around(ProceedingJoinPoint pjp) throws Exception {
+//
+//        Object proceed = null;
+//
+//        Signature signature = pjp.getSignature();
+//        MethodSignature methodSignature = (MethodSignature) signature;
+//        Method method = methodSignature.getMethod();
+//        Timer timer = Metrics.timer("requests_cost_time", "method_name", method.getName());
+//
+//        proceed = timer.recordCallable(() -> {
+//            try {
+//                return pjp.proceed();
+//            } catch (Throwable throwable) {
+//                throw new RuntimeException(throwable);
+//            }
+//        });
+//
+//        requests.increment();
+//        return proceed;
+//    }
 }
